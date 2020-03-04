@@ -1,0 +1,31 @@
+@import '../index.scss';
+
+.Home{
+    @include bacgrounds (url('img/bgHome.jpg'));
+
+    .container{
+        // display: block;
+
+        .item__left{
+            @include items;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            align-items: flex-end;
+            // text-align: left;
+            // left: 0;
+            // display: block;
+            // float: left;
+        }
+
+        .item__right{
+            @include items;
+            align-self: flex-end;
+            align-items: flex-start;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            // right: 0;
+            // display: block;
+            // float: right;
+        }
+    }
+}

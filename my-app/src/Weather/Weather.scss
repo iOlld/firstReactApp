@@ -1,0 +1,5 @@
+@import '../index.scss';
+
+.Weather{
+    @include bacgrounds (url('img/bgWeather.jpg'));
+}

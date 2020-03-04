@@ -1,0 +1,5 @@
+@import '../index.scss';
+
+.Currency{
+    @include bacgrounds (url('img/bgMoney.png'));
+}
