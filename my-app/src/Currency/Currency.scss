@@ -2,4 +2,5 @@
 
 .Currency{
     @include bacgrounds (url('img/bgMoney.png'));
+    // @include bacgrounds (url('../img/bgMoney.png'));
 }

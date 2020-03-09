@@ -2,6 +2,7 @@
 
 .Home{
     @include bacgrounds (url('img/bgHome.jpg'));
+    // @include bacgrounds (url('../img/bgHome.jpg'));
 
     .container{
         // display: block;

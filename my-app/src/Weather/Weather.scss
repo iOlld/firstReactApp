@@ -2,4 +2,86 @@
 
 .Weather{
     @include bacgrounds (url('img/bgWeather.jpg'));
+    // @include bacgrounds (url('../img/bgWeather.jpg'));
+
+    &__wrap{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.4);
+        padding: 15px;
+        border-radius: 15px;
+
+        .city__name{
+            margin: 30px;
+            font-size: 30px;
+            // font-family: 'Trade Winds', cursive;
+        }
+
+    }
+
+    p{
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+        // background: rgba(23, 255, 2, 0.5);
+    }
+
+    &__input{
+        position: relative;
+        width: max-content;
+        border-bottom-left-radius: 10px;
+        border-top-right-radius: 10px;
+        overflow: hidden;
+        transition: 0.3s;
+    
+        input{
+            width: 232px;
+            height: 40px;
+            padding-left: 10px;
+            padding-right: 48px;
+            border: none;
+            text-align: center;
+            outline: none;
+    
+            &::placeholder{
+                
+                color: red;
+            }
+            &:focus{
+                color: green;
+            }
+            
+        }
+    
+        .btn__wrap{
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+    
+            button{
+                height: 100%;
+                width: 45px;
+                border: none;
+                outline: none;
+            }
+    
+        }
+    
+    }
+    
+
+}
+
+
+// .Weather
+
+.active__border {
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 0.3s;
 }
