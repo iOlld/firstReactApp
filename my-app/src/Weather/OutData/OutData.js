@@ -98,33 +98,38 @@ class OutData extends React.Component {
         
         return (
             <div className="OutData">
-                {/* <p>Выбор страны</p>
-                <p>Выбор города</p> */}
-                <div className="temp__wrap">
-                    <p>Температура {(this.state.data.main.temp - this.state.degreesCelsius).toFixed(2)} &deg;C</p>
-                    <p>Ощущается как {(this.state.data.main.feels_like - this.state.degreesCelsius).toFixed(2)} &deg;C</p>
-                    <p>Минимальная {(this.state.data.main.temp_min - this.state.degreesCelsius).toFixed(2)} &deg;C</p>
-                    <p>Максимальная {(this.state.data.main.temp_max - this.state.degreesCelsius).toFixed(2)} &deg;C</p>
+                <div className="now__temp-wrap">
+                    <p className="now__temp">{(this.state.data.main.temp - this.state.degreesCelsius).toFixed(2)} &deg;C</p>
+                    <div className="now__temp-img" >
+                        <img src={`https://openweathermap.org/img/wn/${this.state.data.weather[0].icon}@2x.png`} 
+                            alt={`Погода ${this.state.data.name}`} />
+                        {this.state.data.weather[0].description && <p> {this.state.data.weather[0].description} </p>}
+                    </div>
                 </div>
 
+                <div className="description-wrap">
+                    <div className="description-item">
+                        <p>Ощущается как {(this.state.data.main.feels_like - this.state.degreesCelsius).toFixed(2)} &deg;C</p>
+                        <p>Минимальная {(this.state.data.main.temp_min - this.state.degreesCelsius).toFixed(2)} &deg;C</p>
+                        <p>Максимальная {(this.state.data.main.temp_max - this.state.degreesCelsius).toFixed(2)} &deg;C</p>
+                    </div>
+                    <div className="description-item">
+                        {this.state.data.visibility && <p>Видимость {this.state.data.visibility / 1000} км</p>}
+                        {this.state.data.clouds.all !== 0 && <p>Облачность {this.state.data.clouds.all} % </p>}
+                        {this.state.data.main.humidity !== 0 && <p>Влажность {this.state.data.main.humidity} % </p>}
+                        {this.state.data.rain && <p> Осадки {this.state.data.rain['3h']} мм </p>}
+                        {this.state.data.snow && <p> Осадки {this.state.data.snow['3h']} мм </p>}
+                    </div>
+                    <div className="description-item">
+                        <p>Давление {this.state.data.main.pressure} мм.р.с </p>
+                        {/* <p>Скорость ветра {this.state.data.wind.speed} м/с {this.windSpeed()} </p> */}
+                        {this.state.data.wind.speed !== 0 && <p> {this.windSpeed()} {this.state.data.wind.speed} м/с </p>}
+                        <p>{this.state.data.wind.deg}&deg; {this.windDeg()} </p>
+                        {/* <p>Направление {this.state.data.wind.deg}&deg; {this.windDeg()} </p> */}
+                        {/* <p>Направление ветра {this.state.data.wind.deg}&deg; {this.windDeg()} </p> */}
+                    </div>
+                </div>
 
-                <img src={`https://openweathermap.org/img/wn/${this.state.data.weather[0].icon}@2x.png`} 
-                     alt={`Погода ${this.state.data.name}`} />
-                {this.state.data.weather[0].description && <p> {this.state.data.weather[0].description} </p>}
-
-                {this.state.data.rain && <p> Осадки {this.state.data.rain['3h']} мм </p>}
-                {this.state.data.snow && <p> Осадки {this.state.data.snow['3h']} мм </p>}
-
-                
-                {this.state.data.visibility && <p>Видимость {this.state.data.visibility} метров</p>}
-                {this.state.data.clouds.all && <p>Облачность {this.state.data.clouds.all} % </p>}
-                {this.state.data.main.humidity && <p>Влажность {this.state.data.main.humidity} % </p>}
-                <p>Давление {this.state.data.main.pressure} мм.р.с </p>
-                <p>Скорость ветра {this.state.data.wind.speed} м/с {this.windSpeed()} </p>
-                <p>Направление ветра {this.state.data.wind.deg}&deg; {this.windDeg()} </p>
-
-
-                <p>Большой блок погоды на 5 дней</p>
 
             </div>
         )

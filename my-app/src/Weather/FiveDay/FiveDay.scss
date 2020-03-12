@@ -1,0 +1,23 @@
+// @import '../index.scss';
+
+.FiveDay{
+    margin: 20px auto 0px auto;
+    &__wrap{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 20px auto 0px auto;
+        background: rgba(0, 0, 0, 0.9);
+    }
+
+    &__item{
+        padding: 15px;
+        width: 120px;
+        p{
+            margin: 5px 0px;
+            font-size: 13px;
+        }
+    }
+
+}

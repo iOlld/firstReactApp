@@ -1,15 +1,59 @@
 .OutData{
     width: 100%;
-    .temp__wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .now__temp-wrap{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-between;
-        p{
+        justify-content: space-around;
+        align-items: center;
+
+        .now__temp{
+            font-size: 70px;
             margin: 20px;
             width: max-content;
+            font-weight: 900;
         }
 
+        .now__temp-img{
+            width: 200px;
+
+            img{
+                width: 120px;
+                // height: 100px;
+            }
+
+            p{
+                transform: translateY(-50%);
+                font-size: 20px;
+            }
+
+        }
+
+    }
+
+    .description-wrap{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        text-align: left;
+
+        .description-item{
+            margin: 10px;
+            // width: 130px;
+            // margin: 0 auto;
+            // display: flex;
+
+            p{
+                padding: 5px;
+                font-size: 15px;
+                font-weight: 500;
+            }
+        }
     }
 
 }
