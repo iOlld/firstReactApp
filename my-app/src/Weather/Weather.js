@@ -12,7 +12,9 @@ class Weather extends React.Component {
         apiKey: 'ca482b786e08726f3f706f8816f39a3b',
         data: {},
         forecastData: {},
-        // cityId: '',
+        sunrise: '',
+        sunset: '',
+        timezone: '',
         degreesCelsius: 273.15,
         city: '',
         country: '',
@@ -56,6 +58,9 @@ class Weather extends React.Component {
                 this.setState({data: data})
                 this.setState({city: data.name})
                 this.setState({country: data.sys.country})
+                this.setState({sunrise: data.sys.sunrise})
+                this.setState({sunset: data.sys.sunset})
+                this.setState({timezone: data.timezone})
                 // this.setState({cityId: data.id})
 
                 // this.weatherForecast(`id=${data.id}`);
@@ -121,6 +126,21 @@ class Weather extends React.Component {
     }
 
 
+    // Функция вывода времени восхода и захода
+    upAndDown = (time) => {
+        time = new Date(time * 1000);
+        let hoursS = time.getUTCHours();
+        let minutesS = time.getUTCMinutes();
+        if (hoursS < 10) {
+            hoursS = `0${hoursS}`;
+        }
+        if (minutesS < 10) {
+            minutesS = `0${minutesS}`;
+        }
+        return `${hoursS}:${minutesS}`;
+    };
+
+
 
     // five = () => {
     //     console.log(this.state.forecastData);
@@ -128,9 +148,10 @@ class Weather extends React.Component {
     // }
 
 
-    // // все данные
+    // // // все данные
     // showAllData = () => {
     //     console.log(this.state.data);
+    //     console.log(this.state.data.sys.sunrise);
     //     console.log(this.state.data.cod, typeof(this.state.data.cod));
     // }
 
@@ -142,7 +163,12 @@ class Weather extends React.Component {
             <div className="Weather">
                 <div className="container">
                     <div className="Weather__wrap">
-                        {this.state.city && <p className="city__name" > {this.state.city} {this.state.country} </p>}
+                        <div className="Weather__head">
+                            {this.state.sunrise && <p>Восход {this.upAndDown(this.state.sunrise + this.state.timezone)} </p>}
+                            {this.state.city && <p className="city__name" > {this.state.city} {this.state.country} </p>}
+                            
+                            {this.state.sunset && <p>Восход {this.upAndDown(this.state.sunset + this.state.timezone)} </p>}
+                        </div>
                         
                         <form className={[`Weather__input ${this.state.activeBorder}`]}> 
                             <input onChange={this.cityNameFunc} onClick={this.addBorderStyle} placeholder="Kiev,UA" />

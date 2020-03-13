@@ -32,20 +32,55 @@ class FiveDay extends React.Component {
       
     }
 
-
-    // componentDidMount() {
-
-    // }
+    timeFunc = (time) => {
+      time = new Date(time * 1000);
+      let hours = time.getUTCHours();
+      let minutes = time.getUTCMinutes();
+      let date = time.getDate();
+      let day = time.getDay();
+  
+      switch(day){
+          case 0:
+              day = 'Воскресенье'
+              break;
+          case 1:
+              day = 'Понедельник'
+              break;
+          case 2:
+              day = 'Вторник'
+              break;
+          case 3:
+              day = 'Среда'
+              break;
+          case 4:
+              day = 'Четверг'
+              break;
+          case 5:
+              day = 'Пятница'
+              break;
+          case 6:
+              day = 'Суббота'
+              break;
+          default:
+            break;
+      }
+  
+      if (hours < 10) hours = `0${hours}`;
+      if (minutes < 10) minutes = `0${minutes}`;
+      if (date < 10) date = `0${date}`;
+  
+      return `${date} ${day} ${hours}:${minutes}`;
+  };
 
     
     // все данные
-    showAllData = () => {
-        console.log(this.state.data);
-    }
+    // showAllData = () => {
+    //     console.log(this.state.data);
+    // }
 
     render() {
 
-      this.showAllData();
+      // this.showAllData();
 
         return (
             <div className="FiveDay">
@@ -56,16 +91,25 @@ class FiveDay extends React.Component {
                     return (
                       <div className="FiveDay__item" key={i}>
                         
-                        <p>{(this.state.data.list[element].main.temp - this.state.degreesCelsius).toFixed(2)} &deg; C</p>
-                        <p>Облачность {this.state.data.list[element].clouds.all} %</p>
-                        <p>Влажность {this.state.data.list[element].main.humidity} %</p>
-                        <div className="FiveDay__temp-img" >
-                            <img src={`https://openweathermap.org/img/wn/${this.state.data.list[element].weather[0].icon}@2x.png`} 
-                                alt={`Погода ${this.state.data.list[element].weather[0].icon}`} />
-                            {this.state.data.list[element].weather[0].description && <p> {this.state.data.list[element].weather[0].description}</p>}
+                        <p> {this.timeFunc(this.state.data.list[element].dt)} </p>
+
+                        <div className="FiveDay__item-wrap">
+                          <div className="FiveDay__temp-img" >
+                            <div>
+                              <img src={`https://openweathermap.org/img/wn/${this.state.data.list[element].weather[0].icon}@2x.png`} 
+                                  alt={`Погода ${this.state.data.list[element].weather[0].icon}`} />
+                            </div>
+                              {this.state.data.list[element].weather[0].description && <p> {this.state.data.list[element].weather[0].description}</p>}
+                          </div>
+                          
+                          <div className="FiveDay__temp-description" >
+                            <p>{(this.state.data.list[element].main.temp - this.state.degreesCelsius).toFixed(2)} &deg; C</p>
+                            <p>Облачность {this.state.data.list[element].clouds.all} %</p>
+                            <p>Влажность {this.state.data.list[element].main.humidity} %</p>
+                          </div>
                         </div>
-                        {/* {console.log(this.state.data.list[element])}
-                        {console.log(this.state.data.list[i])} */}
+
+
                       </div>
                     )
                   } )}

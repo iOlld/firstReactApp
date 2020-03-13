@@ -4,6 +4,19 @@
     @include bacgrounds (url('img/bgWeather.jpg'));
     // @include bacgrounds (url('../img/bgWeather.jpg'));
 
+    &__head{
+        display: flex;
+        width: 95%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin: 30px 15px;
+        // p{
+        //     width: max-content;
+        // }
+    }
+
     &__wrap{
         position: relative;
         display: flex;
@@ -15,7 +28,7 @@
         overflow: hidden;
 
         .city__name{
-            margin: 30px;
+            // margin: 30px;
             font-size: 30px;
             // font-family: 'Trade Winds', cursive;
         }

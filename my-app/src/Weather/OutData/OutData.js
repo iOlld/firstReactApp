@@ -124,8 +124,10 @@ class OutData extends React.Component {
                         <p>Давление {this.state.data.main.pressure} мм.р.с </p>
                         {/* <p>Скорость ветра {this.state.data.wind.speed} м/с {this.windSpeed()} </p> */}
                         {this.state.data.wind.speed !== 0 && <p> {this.windSpeed()} {this.state.data.wind.speed} м/с </p>}
-                        <p>{this.state.data.wind.deg}&deg; {this.windDeg()} </p>
+                        {/* <p>{this.state.data.wind.deg}&deg; {this.windDeg()} </p> */}
                         {/* <p>Направление {this.state.data.wind.deg}&deg; {this.windDeg()} </p> */}
+                        <p>Направление {this.state.data.wind.deg}&deg;</p>
+                        <p>{this.windDeg()} </p>
                         {/* <p>Направление ветра {this.state.data.wind.deg}&deg; {this.windDeg()} </p> */}
                     </div>
                 </div>
