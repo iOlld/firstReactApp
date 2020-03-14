@@ -3,4 +3,38 @@
 .Currency{
     @include bacgrounds (url('img/bgMoney.png'));
     // @include bacgrounds (url('../img/bgMoney.png'));
+    
+    &__wrap{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.4);
+        padding: 15px;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .base__currency{
+        margin: 15px;
+        font-size: 40px;
+    }
+
+    .Currency__item-wrap{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        div{
+            margin: 5px 15px;
+        }
+    }
+
+    p{
+        text-align: left;
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+        // background: rgba(23, 255, 2, 0.5);
+    }
 }

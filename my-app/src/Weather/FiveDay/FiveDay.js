@@ -99,7 +99,7 @@ class FiveDay extends React.Component {
                               <img src={`https://openweathermap.org/img/wn/${this.state.data.list[element].weather[0].icon}@2x.png`} 
                                   alt={`Погода ${this.state.data.list[element].weather[0].icon}`} />
                             </div>
-                              {this.state.data.list[element].weather[0].description && <p> {this.state.data.list[element].weather[0].description}</p>}
+                              {this.state.data.list[element].weather[0].description && <p>{this.state.data.list[element].weather[0].description}</p>}
                           </div>
                           
                           <div className="FiveDay__temp-description" >

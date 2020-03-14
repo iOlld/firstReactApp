@@ -36,7 +36,9 @@ class Weather extends React.Component {
             }, (error) => {
             // если ошибка (можно проверить код ошибки)
             if (error.PERMISSION_DENIED) {
-                this.setState({city: 'Погода по координатам не доступна'})
+                this.weatherNow(`q=${this.state.cityName}`)
+                this.weatherForecast(`q=${this.state.cityName}`)
+                // this.setState({city: 'Погода по координатам не доступна'})
             }   
         });
         this.setCoordFunk = (lat, long) => {
@@ -167,7 +169,7 @@ class Weather extends React.Component {
                             {this.state.sunrise && <p>Восход {this.upAndDown(this.state.sunrise + this.state.timezone)} </p>}
                             {this.state.city && <p className="city__name" > {this.state.city} {this.state.country} </p>}
                             
-                            {this.state.sunset && <p>Восход {this.upAndDown(this.state.sunset + this.state.timezone)} </p>}
+                            {this.state.sunset && <p>Заход {this.upAndDown(this.state.sunset + this.state.timezone)} </p>}
                         </div>
                         
                         <form className={[`Weather__input ${this.state.activeBorder}`]}> 
@@ -186,7 +188,6 @@ class Weather extends React.Component {
 
                         {/* Тут, если все норм, то данные о погоде на 5 дней с шагом в 3 часа*/}
                         {(this.state.forecastData.cod === '200')?(<FiveDay 
-                        // {(this.state.forecastData.cod === '200' && this.state.data.cod === 200)?(<FiveDay 
                                                             forecastData={this.state.forecastData}
                                                             degreesCelsius={this.state.degreesCelsius} />)
                                                             :<p>Что-то пошло не так</p>}
