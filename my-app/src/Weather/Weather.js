@@ -12,16 +12,119 @@ class Weather extends React.Component {
         apiKey: 'ca482b786e08726f3f706f8816f39a3b',
         data: {},
         forecastData: {},
-        sunrise: '',
-        sunset: '',
-        timezone: '',
         degreesCelsius: 273.15,
         city: '',
-        country: '',
+        select: '',
+        selectCountry: '',
+        selectCity: '',
         cityName: 'Kiev,ua',
         activeBorder: '',
-        temp: '',
       }
+
+      // Список городов
+        this.cityList = [
+            
+            {
+                "id": 707860,
+                "name": "Hurzuf",
+                "country": "UA",
+                "coord": {
+                    "lon": 34.283333,
+                    "lat": 44.549999
+                }
+            },
+
+            {
+                "id": 519188,
+                "name": "Novinki",
+                "country": "RU",
+                "coord": {
+                    "lon": 37.666668,
+                    "lat": 55.683334
+                }
+            },
+
+            {
+                "id": 571476,
+                "name": "Bryansk",
+                "country": "RU",
+                "coord": {
+                    "lon": 34.38,
+                    "lat": 53.29
+                }
+            },
+
+            {
+                "id": 553915,
+                "name": "Kaluga",
+                "country": "RU",
+                "coord": {
+                    "lon": 36.2754,
+                    "lat": 54.5293
+                }
+            },
+
+            {
+                "id": 708546,
+                "name": "Holubynka",
+                "country": "UA",
+                "coord": {
+                    "lon": 33.900002,
+                    "lat": 44.599998
+                }
+            },
+
+            {
+                "id": 703363,
+                "name": "Laspi",
+                "country": "UA",
+                "coord": {
+                "lon": 33.733334,
+                "lat": 44.416668
+                }
+            },
+
+            {
+                "id": 473537,
+                "name": "Vinogradovo",
+                "country": "RU",
+                "coord": {
+                    "lon": 38.545555,
+                    "lat": 55.423332
+                }
+            },
+
+            {
+                "id": 569143,
+                "name": "Cherkizovo",
+                "country": "RU",
+                "coord": {
+                    "lon": 37.728889,
+                    "lat": 55.800835
+                }
+            },
+
+            {
+                "id": 705135,
+                "name": "Konotop",
+                "country": "UA",
+                "coord": {
+                    "lon": 33.2,
+                    "lat": 51.24
+                }
+            },
+
+            {
+                "id": 713514,
+                "name": "Alupka",
+                "country": "UA",
+                "coord": {
+                    "lon": 34.049999,
+                    "lat": 44.416668
+                }
+            }
+
+        ];
 
       this.coordFunc();
       
@@ -59,28 +162,11 @@ class Weather extends React.Component {
             .then( (data) => {
                 this.setState({data: data})
                 this.setState({city: data.name})
-                this.setState({country: data.sys.country})
-                this.setState({sunrise: data.sys.sunrise})
-                this.setState({sunset: data.sys.sunset})
-                this.setState({timezone: data.timezone})
-                // this.setState({cityId: data.id})
-
-                // this.weatherForecast(`id=${data.id}`);
-
-
-
                 // this.showAllData();
-
-
             } )
-            .catch( () => {
-                // errror
-            } )
-
+            
     }
 
-
-    
 
     // // Пять дней
     weatherForecast = (cityId) => {
@@ -92,24 +178,13 @@ class Weather extends React.Component {
             this.setState({forecastData: data})
             // this.five();
         } )
-        .catch( () => {
-            // errror
-        } )
     }
 
 
     // название места/города
     // придумать как корректно вводить название городов из 2-х и больше слов
     cityNameFunc = (e) => {
-        if(e.target.value === '') {
-            this.setState({cityName: 'Kiev,ua'})
-        } else {
-            // e.target.value = e.target.value.trim()
-            this.setState({cityName: e.target.value})
-
-            // e.target.value = e.target.value.trim()
-            // this.setState({cityName: e.target.value.trim()})
-        }
+        e.target.value === '' ? this.setState({cityName: 'Kiev,ua'}) : this.setState({cityName: e.target.value})
     }
 
     // Отправка формы (введенных значений в инпут)
@@ -120,56 +195,43 @@ class Weather extends React.Component {
         this.setState({activeBorder: ''})
     }
 
-
-
     // при вводе смена css стиля
     addBorderStyle = () => {
         this.setState({activeBorder: 'active__border'})
     }
 
+    selectCountry = (event) => {
+        // let countrySet = this.cityList.map()
+        console.log(event.target.value)
+        this.setState({select: event.target.value})
+    }
 
-    // Функция вывода времени восхода и захода
-    upAndDown = (time) => {
-        time = new Date(time * 1000);
-        let hoursS = time.getUTCHours();
-        let minutesS = time.getUTCMinutes();
-        if (hoursS < 10) {
-            hoursS = `0${hoursS}`;
-        }
-        if (minutesS < 10) {
-            minutesS = `0${minutesS}`;
-        }
-        return `${hoursS}:${minutesS}`;
-    };
+    selectCity = (event) => {
+        console.log(event.target.value)
+        
+        this.weatherNow(`id=${event.target.value}`)
+        this.weatherForecast(`id=${event.target.value}`)
+    }
 
+    // // // Все данные
+    // showAllData = () => {console.log(this.state.data.sys.country)}
 
-
-    // five = () => {
-    //     console.log(this.state.forecastData);
-    //     console.log(this.state.forecastData.cod, typeof(this.state.forecastData.cod));
-    // }
-
-
-    // // // все данные
-    // showAllData = () => {
-    //     console.log(this.state.data);
-    //     console.log(this.state.data.sys.sunrise);
-    //     console.log(this.state.data.cod, typeof(this.state.data.cod));
-    // }
-
+    // Данные на 5 дней
+    // five = () => {console.log(this.state.forecastData)}
 
 
     render() {
+
+        let country = this.cityList.map( element => element.country );
+        let countrySet = new Set(country);
+        countrySet = Array.from(countrySet)
 
         return (
             <div className="Weather">
                 <div className="container">
                     <div className="Weather__wrap">
                         <div className="Weather__head">
-                            {this.state.sunrise && <p>Восход {this.upAndDown(this.state.sunrise + this.state.timezone)} </p>}
-                            {this.state.city && <p className="city__name" > {this.state.city} {this.state.country} </p>}
-                            
-                            {this.state.sunset && <p>Заход {this.upAndDown(this.state.sunset + this.state.timezone)} </p>}
+                            {this.state.city && <p className="city__name" > {this.state.city}</p>}
                         </div>
                         
                         <form className={[`Weather__input ${this.state.activeBorder}`]}> 
@@ -178,6 +240,28 @@ class Weather extends React.Component {
                                 <button onClick={this.sendForm} >GO</button>
                             </div>
                         </form>
+
+                        <div className="Weather__select" >
+                            <select onChange={this.selectCountry} className="select__currency" defaultValue={this.state.selectCountry} name="select">
+                                <option value="" disabled>Выберите страну</option>
+                                {Object.keys(countrySet).map( (element, i) => {
+                                    return <option key={i} value={countrySet[element]} >{countrySet[element]}</option>
+                                } )}
+                            </select>
+                            {this.state.select && (
+                                <select onChange={this.selectCity} className="select__currency" defaultValue={this.state.selectCity} name="select">
+                                    <option value="" disabled>Выберите город</option>
+                                    {Object.keys(this.cityList).map( (element, i) => {
+
+                                        if(this.state.select.indexOf(this.cityList[element].country) !== -1) {
+                                            return <option key={i} value={this.cityList[element].id} >{this.cityList[element].name}</option>
+                                        } else{
+                                            return null
+                                        }
+                                    } )}
+                                </select>
+                            )}
+                        </div>
 
                         {/* Тут мы данные выводим если пользователь не накосячит (текущие) */}
                         {(this.state.data.cod === 200)?(<OutData 

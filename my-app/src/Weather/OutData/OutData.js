@@ -19,6 +19,22 @@ class OutData extends React.Component {
         }
     }
 
+    
+    // Функция вывода времени восхода и захода
+    upAndDown = (time) => {
+        time = new Date(time * 1000);
+        let hoursS = time.getUTCHours();
+        let minutesS = time.getUTCMinutes();
+        if (hoursS < 10) {
+            hoursS = `0${hoursS}`;
+        }
+        if (minutesS < 10) {
+            minutesS = `0${minutesS}`;
+        }
+        return `${hoursS}:${minutesS}`;
+    };
+
+    // Объяснение скорости ветра (переделать нормально красиво)
     windSpeed = () => {
         
         let wind;
@@ -54,6 +70,7 @@ class OutData extends React.Component {
         return wind;
     }
 
+    // Направление ветра (переделать красиво)
     windDeg = () => {
         let wind;
         
@@ -109,11 +126,15 @@ class OutData extends React.Component {
 
                 <div className="description-wrap">
                     <div className="description-item">
+                        <p>{this.state.data.name} {this.state.data.sys.country}</p>
+                        <p>Восход {this.upAndDown(this.state.data.sys.sunrise + this.state.data.timezone)} </p>
+                        <p>Восход {this.upAndDown(this.state.data.sys.sunset + this.state.data.timezone)} </p>
+                    </div>
+                    <div className="description-item">
                         <p>Ощущается как {(this.state.data.main.feels_like - this.state.degreesCelsius).toFixed(2)} &deg;C</p>
                         <p>Минимальная {(this.state.data.main.temp_min - this.state.degreesCelsius).toFixed(2)} &deg;C</p>
                         <p>Максимальная {(this.state.data.main.temp_max - this.state.degreesCelsius).toFixed(2)} &deg;C</p>
-                    </div>
-                    <div className="description-item">
+
                         {this.state.data.visibility && <p>Видимость {this.state.data.visibility / 1000} км</p>}
                         {this.state.data.clouds.all !== 0 && <p>Облачность {this.state.data.clouds.all} % </p>}
                         {this.state.data.main.humidity !== 0 && <p>Влажность {this.state.data.main.humidity} % </p>}
@@ -122,13 +143,9 @@ class OutData extends React.Component {
                     </div>
                     <div className="description-item">
                         <p>Давление {this.state.data.main.pressure} мм.р.с </p>
-                        {/* <p>Скорость ветра {this.state.data.wind.speed} м/с {this.windSpeed()} </p> */}
                         {this.state.data.wind.speed !== 0 && <p> {this.windSpeed()} {this.state.data.wind.speed} м/с </p>}
-                        {/* <p>{this.state.data.wind.deg}&deg; {this.windDeg()} </p> */}
-                        {/* <p>Направление {this.state.data.wind.deg}&deg; {this.windDeg()} </p> */}
                         <p>Направление {this.state.data.wind.deg}&deg;</p>
                         <p>{this.windDeg()} </p>
-                        {/* <p>Направление ветра {this.state.data.wind.deg}&deg; {this.windDeg()} </p> */}
                     </div>
                 </div>
 

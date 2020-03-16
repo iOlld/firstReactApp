@@ -70,7 +70,7 @@ code {
 	flex-direction: column;
 
 	width: 100%;
-    min-height: 300px;
+    // min-height: 300px;
 	background: $property;
 	background-repeat: no-repeat;
 	// background-position: center;
@@ -117,3 +117,12 @@ code {
 	color: #fff;
 }
 
+@media screen and (max-width: 736px) {
+
+	.container{
+		width: 100%;
+		// margin-left: 15px;
+		// margin-right: 15px;
+	}
+
+}
