@@ -202,16 +202,25 @@ class Weather extends React.Component {
 
     selectCountry = (event) => {
         // let countrySet = this.cityList.map()
-        console.log(event.target.value)
+        // console.log(event.target.value)
         this.setState({select: event.target.value})
     }
 
     selectCity = (event) => {
-        console.log(event.target.value)
+        // console.log(event.target.value)
         
         this.weatherNow(`id=${event.target.value}`)
         this.weatherForecast(`id=${event.target.value}`)
     }
+
+    // removeStyle = (event) => {
+    //         console.log(`1`);
+    //         // event.preventDefault();
+    //         event.stopPropagation();
+    //         // event.stopImmediatePropagation();
+    //         this.setState({activeBorder: ''})
+    // }
+
 
     // // // Все данные
     // showAllData = () => {console.log(this.state.data.sys.country)}
@@ -228,6 +237,8 @@ class Weather extends React.Component {
 
         return (
             <div className="Weather">
+            {/* <div className="Weather" onClick={this.removeStyle}> */}
+                <div className="Weather__bg"></div>
                 <div className="container">
                     <div className="Weather__wrap">
                         <div className="Weather__head">
