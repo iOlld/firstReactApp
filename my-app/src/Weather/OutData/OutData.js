@@ -34,7 +34,7 @@ class OutData extends React.Component {
         return `${hoursS}:${minutesS}`;
     };
 
-    // Объяснение скорости ветра (переделать нормально красиво)
+    // Объяснение скорости ветра (переделать нормально красиво, использовать массив)
     windSpeed = () => {
         
         let wind;
@@ -70,7 +70,7 @@ class OutData extends React.Component {
         return wind;
     }
 
-    // Направление ветра (переделать красиво)
+    // Направление ветра (переделать красиво, использовать массив)
     windDeg = () => {
         let wind;
         

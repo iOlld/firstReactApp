@@ -39,6 +39,7 @@ class FiveDay extends React.Component {
       let date = time.getDate();
       let day = time.getDay();
   
+      // сделать массивом
       switch(day){
           case 0:
               day = 'Воскресенье'
@@ -73,14 +74,9 @@ class FiveDay extends React.Component {
   };
 
     
-    // все данные
-    // showAllData = () => {
-    //     console.log(this.state.data);
-    // }
 
     render() {
 
-      // this.showAllData();
 
         return (
             <div className="FiveDay">

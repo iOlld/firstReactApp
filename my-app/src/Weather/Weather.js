@@ -200,26 +200,16 @@ class Weather extends React.Component {
         this.setState({activeBorder: 'active__border'})
     }
 
+    // выбор страны
     selectCountry = (event) => {
-        // let countrySet = this.cityList.map()
-        // console.log(event.target.value)
         this.setState({select: event.target.value})
     }
-
+    // выбор города
     selectCity = (event) => {
-        // console.log(event.target.value)
-        
         this.weatherNow(`id=${event.target.value}`)
         this.weatherForecast(`id=${event.target.value}`)
     }
 
-    // removeStyle = (event) => {
-    //         console.log(`1`);
-    //         // event.preventDefault();
-    //         event.stopPropagation();
-    //         // event.stopImmediatePropagation();
-    //         this.setState({activeBorder: ''})
-    // }
 
 
     // // // Все данные
@@ -237,7 +227,6 @@ class Weather extends React.Component {
 
         return (
             <div className="Weather">
-            {/* <div className="Weather" onClick={this.removeStyle}> */}
                 <div className="Weather__bg"></div>
                 <div className="container">
                     <div className="Weather__wrap">
@@ -251,7 +240,7 @@ class Weather extends React.Component {
                                 <button onClick={this.sendForm} >GO</button>
                             </div>
                         </form>
-
+                        {/* Это вот мама просила сделать выбор городов */}
                         <div className="Weather__select" >
                             <select onChange={this.selectCountry} className="select__currency" defaultValue={this.state.selectCountry} name="select">
                                 <option value="" disabled>Выберите страну</option>
@@ -269,6 +258,7 @@ class Weather extends React.Component {
                                         } else{
                                             return null
                                         }
+
                                     } )}
                                 </select>
                             )}
