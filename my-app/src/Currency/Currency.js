@@ -43,18 +43,22 @@ class Currency extends React.Component {
 
             .then( data => data.json() )
 
-            .then( (data) => {
-                // склеиваем 2 массива
-                let all = this.state.data.concat(data);
-                this.setState({dataAll : all})
-                // получаем все коды/обозначения валют
-                let cod = all.map( element => element.ccy );
-                // убираем повторения кода/обозначения, (эти махинации только для того чтоб убрать повторение биткоина)
-                let res = Array.from((new Set(cod)));
+            .then( (data) => this.glueArrays(this.state.data, data) )
 
-                this.setState({allCurrencyCod: res});
-            } )
+    }
 
+    
+    // склеиваем 2 массива
+    glueArrays = (base, other) => {
+        // склеиваем 2 массива
+        let all = base.concat(other);
+        this.setState({dataAll : all})
+        // получаем все коды/обозначения валют
+        let cod = all.map( element => element.ccy );
+        // убираем повторения кода/обозначения, (эти махинации только для того чтоб убрать повторение биткоина)
+        let res = Array.from((new Set(cod)));
+
+        this.setState({allCurrencyCod: res});
     }
 
     // переберает массив всех валют и выводит данные о выбранной валюте
@@ -66,6 +70,7 @@ class Currency extends React.Component {
     
     render() {
 
+        console.log(this.state.selectChecked)
         return (
             <div className="Currency">
                 <div className="Currency__bg"></div>
@@ -91,21 +96,24 @@ class Currency extends React.Component {
                         </div>
                         
                         <div className="sylect__currency-wrap">
+                            
+                            <p>Калькулятор валют</p>
                             <select onChange={this.selectFunc} className="select__currency" defaultValue={this.state.selectDefaultVal} name="select">
                                 <option value="" disabled>Выберите валюту</option>
                                 {Object.keys(this.state.allCurrencyCod).map( (element) => {
                                     return <option key={element} value={this.state.allCurrencyCod[element]} >{this.state.allCurrencyCod[element]}</option>
                                 } )}
                             </select>
-                            {this.state.selectChecked && <p>
+                            {this.state.selectChecked && < CurrencyCalc selectChecked={this.state.selectChecked} />}
+                            {/* {this.state.selectChecked && <p>
                                 {parseFloat(this.state.selectChecked[0].buy)}&nbsp;&nbsp;
                                 {this.state.selectChecked[0].ccy}&nbsp;&nbsp;
                                 {parseFloat(this.state.selectChecked[0].sale)}
-                            </p> }
+                            </p> } */}
                         </div>
 
                     </div>
-                    < CurrencyCalc />
+                    {/* < CurrencyCalc selectChecked={this.state.selectChecked} /> */}
                 </div>
             </div>
         )

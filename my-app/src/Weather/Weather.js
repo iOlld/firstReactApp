@@ -221,6 +221,7 @@ class Weather extends React.Component {
 
     render() {
 
+        // фильтр повторяющихся стран
         let country = this.cityList.map( element => element.country );
         let countrySet = new Set(country);
         countrySet = Array.from(countrySet)

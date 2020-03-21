@@ -1,0 +1,10 @@
+.CurrencyCalc{
+    &__item{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        p, input{
+            margin: 10px;
+        }
+    }
+}
