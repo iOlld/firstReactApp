@@ -3,7 +3,6 @@ import './Weather.scss';
 
 import OutData from './OutData/OutData';
 import FiveDay from './FiveDay/FiveDay';
-// import EnterCityName from './EnterCityName/EnterCityName';
 
 class Weather extends React.Component {
     constructor (props) {
@@ -141,7 +140,6 @@ class Weather extends React.Component {
             if (error.PERMISSION_DENIED) {
                 this.weatherNow(`q=${this.state.cityName}`)
                 this.weatherForecast(`q=${this.state.cityName}`)
-                // this.setState({city: 'Погода по координатам не доступна'})
             }   
         });
         this.setCoordFunk = (lat, long) => {
@@ -156,13 +154,10 @@ class Weather extends React.Component {
     weatherNow = (how) => {
 
         fetch(`https://api.openweathermap.org/data/2.5/weather?${how}&appid=${this.state.apiKey}&lang=ru`)
-            .then( (data) => {
-                return data.json()
-            } )
+            .then( data => data.json() )
             .then( (data) => {
                 this.setState({data: data})
                 this.setState({city: data.name})
-                // this.showAllData();
             } )
             
     }
@@ -171,12 +166,9 @@ class Weather extends React.Component {
     // // Пять дней
     weatherForecast = (cityId) => {
         fetch(`https://api.openweathermap.org/data/2.5/forecast?${cityId}&appid=${this.state.apiKey}&lang=ru`)
-        .then( (data) => {
-            return data.json()
-        } )
+        .then( data => data.json() )
         .then( (data) => {
             this.setState({forecastData: data})
-            // this.five();
         } )
     }
 
@@ -209,14 +201,6 @@ class Weather extends React.Component {
         this.weatherNow(`id=${event.target.value}`)
         this.weatherForecast(`id=${event.target.value}`)
     }
-
-
-
-    // // // Все данные
-    // showAllData = () => {console.log(this.state.data.sys.country)}
-
-    // Данные на 5 дней
-    // five = () => {console.log(this.state.forecastData)}
 
 
     render() {
@@ -269,14 +253,14 @@ class Weather extends React.Component {
                         {(this.state.data.cod === 200)?(<OutData 
                                                             data={this.state.data} 
                                                             degreesCelsius={this.state.degreesCelsius} />)
-                                                            :<p>И шо теперь делать?</p>}
+                                                            :<p>Что-то пошло не так</p>}
                                                             
 
                         {/* Тут, если все норм, то данные о погоде на 5 дней с шагом в 3 часа*/}
                         {(this.state.forecastData.cod === '200')?(<FiveDay 
                                                             forecastData={this.state.forecastData}
                                                             degreesCelsius={this.state.degreesCelsius} />)
-                                                            :<p>Что-то пошло не так</p>}
+                                                            :<p>Что-то пошло не так два раза</p>}
 
                     </div>
                 </div>

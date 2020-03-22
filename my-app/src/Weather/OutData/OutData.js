@@ -5,8 +5,7 @@ class OutData extends React.Component {
     constructor (props) {
       super(props);
       this.state = {
-        //   temp:'',
-        // wind: '',
+          
       }
 
 
@@ -37,37 +36,61 @@ class OutData extends React.Component {
     // Объяснение скорости ветра (переделать нормально красиво, использовать массив)
     windSpeed = () => {
         
-        let wind;
+        // let wind;
         
-        if(this.state.data.wind.speed <= 0.2){
-            wind = 'Штиль'
-        } else if (this.state.data.wind.speed < 1.5){
-            wind = 'Тихий ветер'
-        } else if (this.state.data.wind.speed < 3.3){
-            wind = 'Лёгкий ветер'
-        } else if (this.state.data.wind.speed < 5.4){
-            wind = 'Слабый ветер'
-        } else if (this.state.data.wind.speed < 7.9){
-            wind = 'Умеренный ветер'
-        } else if (this.state.data.wind.speed < 10.7){
-            wind = 'Свежий ветер'
-        } else if (this.state.data.wind.speed < 13.8){
-            wind = 'Сильный ветер'
-        } else if (this.state.data.wind.speed < 17.1){
-            wind = 'Крепкий ветер'
-        } else if (this.state.data.wind.speed < 20.7){
-            wind = 'Очень крепкий ветер'
-        } else if (this.state.data.wind.speed < 24.4){
-            wind = 'Шторм'
-        } else if (this.state.data.wind.speed < 28.4){
-            wind = 'Сильный шторм'
-        } else if (this.state.data.wind.speed < 32.6){
-            wind = 'Жестокий шторм'
-        } else if (this.state.data.wind.speed > 33){
-            wind = 'Ураган'
-        }
+        // if(this.state.data.wind.speed <= 0.2){
+        //     wind = 'Штиль'
+        // } else if (this.state.data.wind.speed < 1.5){
+        //     wind = 'Тихий ветер'
+        // } else if (this.state.data.wind.speed < 3.3){
+        //     wind = 'Лёгкий ветер'
+        // } else if (this.state.data.wind.speed < 5.4){
+        //     wind = 'Слабый ветер'
+        // } else if (this.state.data.wind.speed < 7.9){
+        //     wind = 'Умеренный ветер'
+        // } else if (this.state.data.wind.speed < 10.7){
+        //     wind = 'Свежий ветер'
+        // } else if (this.state.data.wind.speed < 13.8){
+        //     wind = 'Сильный ветер'
+        // } else if (this.state.data.wind.speed < 17.1){
+        //     wind = 'Крепкий ветер'
+        // } else if (this.state.data.wind.speed < 20.7){
+        //     wind = 'Очень крепкий ветер'
+        // } else if (this.state.data.wind.speed < 24.4){
+        //     wind = 'Шторм'
+        // } else if (this.state.data.wind.speed < 28.4){
+        //     wind = 'Сильный шторм'
+        // } else if (this.state.data.wind.speed < 32.6){
+        //     wind = 'Жестокий шторм'
+        // } else if (this.state.data.wind.speed > 33){
+        //     wind = 'Ураган'
+        // }
+
+        // return wind;
+
         
-        return wind;
+        const windSpeedArr = [
+            {name: 'Штиль', value: 0.2},
+            {name: 'Тихий ветер', value: 1.5},
+            {name: 'Лёгкий ветер', value: 3.3},
+            {name: 'Слабый ветер', value: 5.4},
+            {name: 'Умеренный ветер', value: 7.9},
+            {name: 'Свежий ветер', value: 10.7},
+            {name: 'Сильный ветер', value: 13.8},
+            {name: 'Крепкий ветер', value: 17.1},
+            {name: 'Очень крепкий ветер', value: 20.7},
+            {name: 'Шторм', value: 24.4},
+            {name: 'Сильный шторм', value: 28.4},
+            {name: 'Жестокий шторм', value: 32.6},
+            {name: 'Ураган', value: 33},
+            {name: 'Ураган, точно?', value: 1000},
+        ]
+
+        let windwind = windSpeedArr.filter( (element, i) => {
+            return this.state.data.wind.speed <= element.value
+        } )
+        
+        return windwind[0].name;
     }
 
     // Направление ветра (переделать красиво, использовать массив)

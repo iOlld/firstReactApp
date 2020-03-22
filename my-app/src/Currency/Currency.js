@@ -7,7 +7,6 @@ class Currency extends React.Component {
       super(props);
       this.state = {
         dataBase: '',
-        // dataOther: '',
         dataAll: '',
         allCurrencyCod: '',
         result: '',
@@ -87,7 +86,7 @@ class Currency extends React.Component {
                         </div>
 
                         {this.state.allCurrencyCod && < CurrencyCalc allCurrencyCod={this.state.allCurrencyCod}
-                                                                    dataAll={this.state.dataAll} />}
+                                                                        dataAll={this.state.dataAll} />}
                         
                     </div>
                 </div>
