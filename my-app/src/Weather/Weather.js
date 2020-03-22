@@ -195,11 +195,13 @@ class Weather extends React.Component {
     // выбор страны
     selectCountry = (event) => {
         this.setState({select: event.target.value})
+        this.setState({selectCity: ''})
     }
     // выбор города
     selectCity = (event) => {
         this.weatherNow(`id=${event.target.value}`)
         this.weatherForecast(`id=${event.target.value}`)
+        this.setState({selectCity: event.target.value})
     }
 
 
@@ -234,7 +236,7 @@ class Weather extends React.Component {
                                 } )}
                             </select>
                             {this.state.select && (
-                                <select onChange={this.selectCity} className="select__currency" defaultValue={this.state.selectCity} name="select">
+                                <select onChange={this.selectCity} className="select__currency" value={this.state.selectCity} name="select">
                                     <option value="" disabled>Выберите город</option>
                                     {Object.keys(this.cityList).map( (element, i) => {
 

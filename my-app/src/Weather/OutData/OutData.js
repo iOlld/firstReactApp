@@ -33,41 +33,8 @@ class OutData extends React.Component {
         return `${hoursS}:${minutesS}`;
     };
 
-    // Объяснение скорости ветра (переделать нормально красиво, использовать массив)
+    // Объяснение скорости ветра 
     windSpeed = () => {
-        
-        // let wind;
-        
-        // if(this.state.data.wind.speed <= 0.2){
-        //     wind = 'Штиль'
-        // } else if (this.state.data.wind.speed < 1.5){
-        //     wind = 'Тихий ветер'
-        // } else if (this.state.data.wind.speed < 3.3){
-        //     wind = 'Лёгкий ветер'
-        // } else if (this.state.data.wind.speed < 5.4){
-        //     wind = 'Слабый ветер'
-        // } else if (this.state.data.wind.speed < 7.9){
-        //     wind = 'Умеренный ветер'
-        // } else if (this.state.data.wind.speed < 10.7){
-        //     wind = 'Свежий ветер'
-        // } else if (this.state.data.wind.speed < 13.8){
-        //     wind = 'Сильный ветер'
-        // } else if (this.state.data.wind.speed < 17.1){
-        //     wind = 'Крепкий ветер'
-        // } else if (this.state.data.wind.speed < 20.7){
-        //     wind = 'Очень крепкий ветер'
-        // } else if (this.state.data.wind.speed < 24.4){
-        //     wind = 'Шторм'
-        // } else if (this.state.data.wind.speed < 28.4){
-        //     wind = 'Сильный шторм'
-        // } else if (this.state.data.wind.speed < 32.6){
-        //     wind = 'Жестокий шторм'
-        // } else if (this.state.data.wind.speed > 33){
-        //     wind = 'Ураган'
-        // }
-
-        // return wind;
-
         
         const windSpeedArr = [
             {name: 'Штиль', value: 0.2},
@@ -86,53 +53,40 @@ class OutData extends React.Component {
             {name: 'Ураган, точно?', value: 1000},
         ]
 
-        let windwind = windSpeedArr.filter( (element, i) => {
-            return this.state.data.wind.speed <= element.value
-        } )
+        let wind = windSpeedArr.filter( element => this.state.data.wind.speed <= element.value )
         
-        return windwind[0].name;
+        return wind[0].name;
     }
 
     // Направление ветра (переделать красиво, использовать массив)
     
     windDeg = () => {
-        let wind;
+
+        const windDegArr = [
+            {name: 'Север', valueMin: 0, valueMax: 11.24},
+            {name: 'Северо-северо-восток', valueMin: 11.25, valueMax: 33.75},
+            {name: 'Северо-восток', valueMin: 33.76, valueMax: 56.26},
+            {name: 'Востоко-северо-восток', valueMin: 56.27, valueMax: 78.77},
+            {name: 'Восток', valueMin: 78.78, valueMax: 101.28},
+            {name: 'Востоко-юго-восток', valueMin: 101.29, valueMax: 123.79},
+            {name: 'Юго-восток', valueMin: 123.8, valueMax: 146.3},
+            {name: 'Юго-юго-восток', valueMin: 146.4, valueMax: 168.9},
+            {name: 'Юг', valueMin: 169, valueMax: 191.5},
+            {name: 'Юго-юго-запад', valueMin: 191.6, valueMax: 214.1},
+            {name: 'Юго-запад', valueMin: 214.2, valueMax: 236.7},
+            {name: 'Западо-юго-запад', valueMin: 236.8, valueMax: 259.3},
+            {name: 'Запад', valueMin: 259.4, valueMax: 281.9},
+            {name: 'Западо-северо-запад', valueMin: 282, valueMax: 304.5},
+            {name: 'Северо-запад', valueMin: 304.6, valueMax: 327.1},
+            {name: 'Северо-северо-запад', valueMin: 327.2, valueMax: 349.7},
+            {name: 'Север', valueMin: 349.8, valueMax: 360},
+        ];
+
         
-        if ((this.state.data.wind.deg >= 349.8 && this.state.data.wind.deg <= 360) || (this.state.data.wind.deg >= 0 && this.state.data.wind.deg <= 11.24)) {
-            wind = 'Север';
-        } else if (this.state.data.wind.deg >= 11.25 && this.state.data.wind.deg <= 33.75) {
-            wind = 'Северо-северо-восток';
-        } else if (this.state.data.wind.deg >= 33.76 && this.state.data.wind.deg <= 56.26) {
-            wind = 'Северо-восток';
-        } else if (this.state.data.wind.deg >= 56.27 && this.state.data.wind.deg <= 78.77) {
-            wind = 'Востоко-северо-восток';
-        } else if (this.state.data.wind.deg >= 78.78 && this.state.data.wind.deg <= 101.28) {
-            wind = 'Восток';
-        } else if (this.state.data.wind.deg >= 101.29 && this.state.data.wind.deg <= 123.79) {
-            wind = 'Востоко-юго-восток';
-        } else if (this.state.data.wind.deg >= 123.8 && this.state.data.wind.deg <= 146.3) {
-            wind = 'Юго-восток';
-        } else if (this.state.data.wind.deg >= 146.4 && this.state.data.wind.deg <= 168.9) {
-            wind = 'Юго-юго-восток';
-        } else if (this.state.data.wind.deg >= 169 && this.state.data.wind.deg <= 191.5) {
-            wind = 'Юг';
-        } else if (this.state.data.wind.deg >= 191.6 && this.state.data.wind.deg <= 214.1) {
-            wind = 'Юго-юго-запад';
-        } else if (this.state.data.wind.deg >= 214.2 && this.state.data.wind.deg <= 236.7) {
-            wind = 'Юго-запад';
-        } else if (this.state.data.wind.deg >= 236.8 && this.state.data.wind.deg <= 259.3) {
-            wind = 'Западо-юго-запад';
-        } else if (this.state.data.wind.deg >= 259.4 && this.state.data.wind.deg <= 281.9) {
-            wind = 'Запад';
-        } else if (this.state.data.wind.deg >= 282 && this.state.data.wind.deg <= 304.5) {
-            wind = 'Западо-северо-запад';
-        } else if (this.state.data.wind.deg >= 304.6 && this.state.data.wind.deg <= 327.1) {
-            wind = 'Северо-запад';
-        } else if (this.state.data.wind.deg >= 327.2 && this.state.data.wind.deg <= 349.7) {
-            wind = 'Северо-северо-запад';
-        }
+        let wind = windDegArr.filter( element => this.state.data.wind.deg >= element.valueMin && this.state.data.wind.deg <= element.valueMax )
         
-        return wind;
+        return wind[0].name;
+
     }
 
     render() {

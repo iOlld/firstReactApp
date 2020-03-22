@@ -31,32 +31,20 @@ class FiveDay extends React.Component {
       let day = time.getDay();
   
       // сделать массивом
-      switch(day){
-          case 0:
-              day = 'Воскресенье'
-              break;
-          case 1:
-              day = 'Понедельник'
-              break;
-          case 2:
-              day = 'Вторник'
-              break;
-          case 3:
-              day = 'Среда'
-              break;
-          case 4:
-              day = 'Четверг'
-              break;
-          case 5:
-              day = 'Пятница'
-              break;
-          case 6:
-              day = 'Суббота'
-              break;
-          default:
-            break;
-      }
-  
+      const dayArr = [
+        {name: 'Воскресенье', value: 0},
+        {name: 'Понедельник', value: 1},
+        {name: 'Вторник', value: 2},
+        {name: 'Среда', value: 3},
+        {name: 'Четверг', value: 4},
+        {name: 'Пятница', value: 5},
+        {name: 'Суббота', value: 6},
+      ];
+      
+      let dayName = dayArr.filter( element => element.value === day )
+
+      day = dayName[0].name;
+
       if (hours < 10) hours = `0${hours}`;
       if (minutes < 10) minutes = `0${minutes}`;
       if (date < 10) date = `0${date}`;
