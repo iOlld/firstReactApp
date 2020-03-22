@@ -152,16 +152,13 @@ class Weather extends React.Component {
     
     // Сейчас погода
     weatherNow = (how) => {
-
         fetch(`https://api.openweathermap.org/data/2.5/weather?${how}&appid=${this.state.apiKey}&lang=ru`)
-            .then( data => data.json() )
-            .then( (data) => {
-                this.setState({data: data})
-                this.setState({city: data.name})
-            } )
-            
+        .then( data => data.json() )
+        .then( (data) => {
+            this.setState({data: data})
+            this.setState({city: data.name})
+        } )
     }
-
 
     // // Пять дней
     weatherForecast = (cityId) => {
@@ -266,7 +263,6 @@ class Weather extends React.Component {
 
                     </div>
                 </div>
-
             </div>
         )
     }   

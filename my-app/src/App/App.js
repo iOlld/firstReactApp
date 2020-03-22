@@ -20,7 +20,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        {/* <div className="App__wrap"> */}
           <Header />
           <main>
               <Switch>
@@ -31,7 +30,6 @@ class App extends React.Component {
               </Switch>
           </main>
           <Footer />
-        {/* </div> */}
       </div>
     )
   }

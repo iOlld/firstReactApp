@@ -8,16 +8,14 @@ class FiveDay extends React.Component {
         
       }
 
-      
-      
     }
 
     
     static getDerivedStateFromProps(props, state) {
       
       return {
-          data: props.forecastData,
-          degreesCelsius: props.degreesCelsius,
+        data: props.forecastData,
+        degreesCelsius: props.degreesCelsius,
           
       }
       
@@ -30,7 +28,6 @@ class FiveDay extends React.Component {
       let date = time.getDate();
       let day = time.getDay();
   
-      // сделать массивом
       const dayArr = [
         {name: 'Воскресенье', value: 0},
         {name: 'Понедельник', value: 1},
@@ -52,10 +49,8 @@ class FiveDay extends React.Component {
       return `${date} ${day} ${hours}:${minutes}`;
   };
 
-    
 
     render() {
-
 
         return (
             <div className="FiveDay">
@@ -83,8 +78,7 @@ class FiveDay extends React.Component {
                             <p>Влажность {this.state.data.list[element].main.humidity} %</p>
                           </div>
                         </div>
-
-
+                        
                       </div>
                     )
                   } )}

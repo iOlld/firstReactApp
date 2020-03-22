@@ -8,7 +8,6 @@ class OutData extends React.Component {
           
       }
 
-
     }
 
     static getDerivedStateFromProps(props, state) {
@@ -24,12 +23,8 @@ class OutData extends React.Component {
         time = new Date(time * 1000);
         let hoursS = time.getUTCHours();
         let minutesS = time.getUTCMinutes();
-        if (hoursS < 10) {
-            hoursS = `0${hoursS}`;
-        }
-        if (minutesS < 10) {
-            minutesS = `0${minutesS}`;
-        }
+        if (hoursS < 10) hoursS = `0${hoursS}`;
+        if (minutesS < 10) minutesS = `0${minutesS}`;
         return `${hoursS}:${minutesS}`;
     };
 
@@ -58,8 +53,7 @@ class OutData extends React.Component {
         return wind[0].name;
     }
 
-    // Направление ветра (переделать красиво, использовать массив)
-    
+    // Направление ветра 
     windDeg = () => {
 
         const windDegArr = [
@@ -126,7 +120,6 @@ class OutData extends React.Component {
                         <p>{this.windDeg()} </p>
                     </div>
                 </div>
-
 
             </div>
         )
