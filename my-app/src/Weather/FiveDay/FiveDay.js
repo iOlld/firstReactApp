@@ -5,16 +5,7 @@ class FiveDay extends React.Component {
     constructor (props) {
       super(props);
       this.state = {
-        // forecastData: '',
-        // step: 0,
-        // apiKey: 'ca482b786e08726f3f706f8816f39a3b',
-        // data: '',
-        // degreesCelsius: 273.15,
-        // city: '',
-        // country: '',
-        // cityName: 'Kiev,ua',
-        // activeBorder: '',
-        // temp: '',
+        
       }
 
       

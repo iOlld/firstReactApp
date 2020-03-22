@@ -71,6 +71,7 @@ class OutData extends React.Component {
     }
 
     // Направление ветра (переделать красиво, использовать массив)
+    
     windDeg = () => {
         let wind;
         
