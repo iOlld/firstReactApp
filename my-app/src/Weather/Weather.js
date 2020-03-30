@@ -252,14 +252,14 @@ class Weather extends React.Component {
                         {(this.state.data.cod === 200)?(<OutData 
                                                             data={this.state.data} 
                                                             degreesCelsius={this.state.degreesCelsius} />)
-                                                            :<p>Что-то пошло не так</p>}
+                                                            :<div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
                                                             
 
                         {/* Тут, если все норм, то данные о погоде на 5 дней с шагом в 3 часа*/}
                         {(this.state.forecastData.cod === '200')?(<FiveDay 
                                                             forecastData={this.state.forecastData}
                                                             degreesCelsius={this.state.degreesCelsius} />)
-                                                            :<p>Что-то пошло не так два раза</p>}
+                                                            :<div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
 
                     </div>
                 </div>
