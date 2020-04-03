@@ -1,63 +1,205 @@
-@import '../index.scss';
+// @import '../index.scss';
 
-.Home{
-    @include bacgrounds (url('img/bgHome.jpg'));
-    // @include bacgrounds (url('../img/bgHome.jpg'));
+// .Home{
+//     height: 1000px;
+//     @include bacgrounds (url('img/bgHome.jpg'));
+//     // @include bacgrounds (url('../img/bgHome.jpg'));
 
     
-    &__bg{
-        position: fixed;
+//     &__bg{
+//         position: fixed;
+//         width: 100%;
+//         // height: 100%;
+//         height: 1000px;
+//         bottom: 0;
+//         background: url('../img/bgHome.jpg');
+//         background-position: bottom;
+//         background-size: cover;
+//         &::before{
+//             content: '';
+//             position: absolute;
+//             top: 0;
+//             left: 0;
+//             right: 0;
+//             bottom: 0;
+//             background: rgba(0, 0, 0, 0.6);
+//         }
+//     }
+
+//     .container{
+//         // display: block;
+
+//         .item__left{
+//             @include items;
+//             border-top-right-radius: 15px;
+//             border-bottom-right-radius: 15px;
+//             align-items: flex-end;
+//             // text-align: left;
+//             // left: 0;
+//             // display: block;
+//             // float: left;
+//         }
+
+//         .item__right{
+//             @include items;
+//             align-self: flex-end;
+//             align-items: flex-start;
+//             border-top-left-radius: 15px;
+//             border-bottom-left-radius: 15px;
+//             // right: 0;
+//             // display: block;
+//             // float: right;
+//         }
+//     }
+// }
+
+
+// @media screen and (max-width: 736px) {
+
+// 	.Home{
+
+//         &__wrap{
+//             margin: 0px 15px;
+//         }
+// 	}
+
+// }
+
+
+
+
+
+.Home{
+    background: #0a2a43;
+    // margin: 0 auto;
+    min-height: 1500px;
+    // min-height: 150vh;
+
+    &__wrap{
+        position: relative;
         width: 100%;
-        height: 100%;
-        bottom: 0;
-        background: url('../img/bgHome.jpg');
-        background-position: bottom;
-        background-size: cover;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        // flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        // // !!!!!!!!!!!!!!!!!!!! 
+        .picture{
+            position: absolute;
+            top: 0;
+            // left: 0;
+            width: 100%;
+            height: 100%;
+            
+            background-repeat: no-repeat;
+
+            // object-fit: cover; // Почитать за это свойство
+            // pointer-events: none; // Почитать за это свойство
+        }
+
+        .bg{
+            background: url('../img/bg.jpg');
+        }
+        .moon{
+            right: 0;
+            top: 10%;
+            background: url('../img/moon2.png');
+            width: 200px;
+            height: 200px;
+            background-size: cover;
+        }
+        .mountain{
+            background: url('../img/mountain.png');
+            background-size: cover;
+        }
+        .road{
+            background: url('../img/road2.png');
+            background-size: cover;
+            z-index: 2;
+        }
+
         &::before{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, #0a2a43, transparent);
+            z-index: 100;
+        }
+
+        &::after{
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
+            width: 100%;
+            height: 100%;
+            background: #0a2a43;
+            z-index: 100;
+            mix-blend-mode: color;
         }
+        
+    }
+
+
+
+    &__title{
+        font-family: 'Trade Winds', cursive;
+        position: relative;
+        color: #fff;
+        font-size: 200px;
+        z-index: 1;
     }
 
     .container{
-        // display: block;
+        margin: 0 auto;
+        padding: 100px 0px;
+    }
 
-        .item__left{
-            @include items;
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
-            align-items: flex-end;
-            // text-align: left;
-            // left: 0;
-            // display: block;
-            // float: left;
-        }
-
-        .item__right{
-            @include items;
-            align-self: flex-end;
-            align-items: flex-start;
-            border-top-left-radius: 15px;
-            border-bottom-left-radius: 15px;
-            // right: 0;
-            // display: block;
-            // float: right;
-        }
+    &__description{
+        color: #fff;
+        font-size: 25px;
+        padding: 20px;
     }
 }
 
 
-@media screen and (max-width: 736px) {
+
+// @media screen and (max-width: 1024px) {
+
+// 	.Home{
+
+//         // &__title{
+//         //     font-size: 80px;
+//         // }
+
+//         // .moon{
+//         //     background-position-x: 1240px;
+//         // }
+// 	}
+
+// }
+
+// @media screen and (max-width: 736px) {
+@media screen and (max-width: 1024px) {
 
 	.Home{
 
-        &__wrap{
-            margin: 0px 15px;
+        &__title{
+            font-size: 60px;
+        }
+
+        .moon{
+            // top: 20%;
+            width: 70px;
+            height: 70px;
+        }
+
+        .road{
+            background-position-x: center;
         }
 	}
 
