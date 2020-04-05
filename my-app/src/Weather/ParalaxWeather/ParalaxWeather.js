@@ -32,7 +32,8 @@ class ParalaxWeather extends React.Component {
         window.removeEventListener('scroll', this.windowScroll);
     }
 
-    
+    // Пересмотреть, перепроверить, добавить коменты, короче сделать нормальной вот эту функцию
+    // и вообще оригинал был написан c помощью jq, вопрос, зачем???
     windowScroll = (e) => {
         let s = window.scrollY;
         let w = window.outerWidth;
@@ -45,10 +46,8 @@ class ParalaxWeather extends React.Component {
         let o = 1 - 1/500 * p_b;
 
         let z_1 = 1 + (w / 100000 * p_b)
-        // this.fog.current.style.transform
         this.fog.current.style.transform = `scale(${z_1})`;
         this.fog.current.style.opacity = o;
-        // console.log()
 
         let w_2 = w;
         if(w < 1500) w_2 = w * 2;
