@@ -5,6 +5,7 @@ import OutData from './OutData/OutData';
 import FiveDay from './FiveDay/FiveDay';
 import ParalaxWeather from './ParalaxWeather/ParalaxWeather';
 import SelectWeather from './SelectWeather/SelectWeather';
+import IsLoading from '../IsLoading/IsLoading';
 
 class Weather extends React.Component {
     constructor (props) {
@@ -121,14 +122,14 @@ class Weather extends React.Component {
                             {(this.state.data.cod === 200)?(<OutData 
                                                                 data={this.state.data} 
                                                                 degreesCelsius={this.state.degreesCelsius} />)
-                                                                :<div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
+                                                                :<IsLoading />}
                                                                 
 
                             {/* Тут, если все норм, то данные о погоде на 5 дней с шагом в 3 часа*/}
                             {(this.state.forecastData.cod === '200')?(<FiveDay 
                                                                 forecastData={this.state.forecastData}
                                                                 degreesCelsius={this.state.degreesCelsius} />)
-                                                                :<div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
+                                                                :<IsLoading />}
 
                         </div>
                     </div>
