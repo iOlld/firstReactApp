@@ -40,9 +40,8 @@ class Home extends React.Component {
 
         return (
             <div className="Home" >
-                <div className="Home__wrap">
+                <div className="Home__paralax">
                     {/* <div className="Home__bg"></div> */}
-
                     <div className="picture bg" ref={this.bg}></div>
                     <div className="picture moon" ref={this.moon}></div>
                     <div className="picture mountain" ref={this.mountain}></div>

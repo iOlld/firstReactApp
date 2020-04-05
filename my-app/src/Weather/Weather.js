@@ -3,22 +3,26 @@ import './Weather.scss';
 
 import OutData from './OutData/OutData';
 import FiveDay from './FiveDay/FiveDay';
+import ParalaxWeather from './ParalaxWeather/ParalaxWeather';
 
 class Weather extends React.Component {
     constructor (props) {
-      super(props);
-      this.state = {
-        apiKey: 'ca482b786e08726f3f706f8816f39a3b',
-        data: {},
-        forecastData: {},
-        degreesCelsius: 273.15,
-        city: '',
-        select: '',
-        selectCountry: '',
-        selectCity: '',
-        cityName: 'Kiev,ua',
-        activeBorder: '',
-      }
+        super(props);
+        this.state = {
+            apiKey: 'ca482b786e08726f3f706f8816f39a3b',
+            data: {},
+            forecastData: {},
+            degreesCelsius: 273.15,
+            city: '',
+            select: '',
+            selectCountry: '',
+            selectCity: '',
+            cityName: 'Kiev,ua',
+            activeBorder: '',
+            contentHeight: '', // стейт для ParalaxWeather
+        }
+
+        this.content = React.createRef()
 
       // Список городов
         this.cityList = [
@@ -84,22 +88,12 @@ class Weather extends React.Component {
             },
 
             {
-                "id": 473537,
-                "name": "Vinogradovo",
+                "id": 524901,
+                "name": "Moscow",
                 "country": "RU",
                 "coord": {
-                    "lon": 38.545555,
-                    "lat": 55.423332
-                }
-            },
-
-            {
-                "id": 569143,
-                "name": "Cherkizovo",
-                "country": "RU",
-                "coord": {
-                    "lon": 37.728889,
-                    "lat": 55.800835
+                    "lon": 37.62,
+                    "lat": 55.75
                 }
             },
 
@@ -125,8 +119,12 @@ class Weather extends React.Component {
 
         ];
 
-      this.coordFunc();
-      
+        this.coordFunc();
+        
+    }
+
+    componentDidMount() {
+        this.setState({contentHeight: this.content.current.offsetHeight})
     }
 
     
@@ -201,7 +199,6 @@ class Weather extends React.Component {
         this.setState({selectCity: event.target.value})
     }
 
-
     render() {
 
         // фильтр повторяющихся стран
@@ -211,56 +208,60 @@ class Weather extends React.Component {
 
         return (
             <div className="Weather">
-                <div className="Weather__bg"></div>
-                <div className="container">
-                    <div className="Weather__wrap">
-                        <div className="Weather__head">
-                            {this.state.city && <p className="city__name" > {this.state.city}</p>}
-                        </div>
-                        
-                        <form className={[`Weather__input ${this.state.activeBorder}`]}> 
-                            <input onChange={this.cityNameFunc} onClick={this.addBorderStyle} placeholder="Kiev,UA" />
-                            <div className="btn__wrap" >
-                                <button onClick={this.sendForm} >GO</button>
+                <div className="Weather__wrap">
+
+                    <ParalaxWeather contentHeight={this.state.contentHeight} />
+
+                    <div className="Weather__content" ref={this.content}>
+                        <div className="Weather__content-wrap">
+                            <div className="Weather__head">
+                                {this.state.city && <p className="city__name" > {this.state.city}</p>}
                             </div>
-                        </form>
-                        {/* Это вот мама просила сделать выбор городов */}
-                        <div className="Weather__select" >
-                            <select onChange={this.selectCountry} className="select__currency" defaultValue={this.state.selectCountry} name="select">
-                                <option value="" disabled>Выберите страну</option>
-                                {Object.keys(countrySet).map( (element, i) => {
-                                    return <option key={i} value={countrySet[element]} >{countrySet[element]}</option>
-                                } )}
-                            </select>
-                            {this.state.select && (
-                                <select onChange={this.selectCity} className="select__currency" value={this.state.selectCity} name="select">
-                                    <option value="" disabled>Выберите город</option>
-                                    {Object.keys(this.cityList).map( (element, i) => {
-
-                                        if(this.state.select.indexOf(this.cityList[element].country) !== -1) {
-                                            return <option key={i} value={this.cityList[element].id} >{this.cityList[element].name}</option>
-                                        } else{
-                                            return null
-                                        }
-
+                            
+                            <form className={[`Weather__input ${this.state.activeBorder}`]}> 
+                                <input onChange={this.cityNameFunc} onClick={this.addBorderStyle} placeholder="Kiev,UA" />
+                                <div className="btn__wrap" >
+                                    <button onClick={this.sendForm} >GO</button>
+                                </div>
+                            </form>
+                            {/* Это вот мама просила сделать выбор городов */}
+                            <div className="Weather__select" >
+                                <select onChange={this.selectCountry} className="select__currency" defaultValue={this.state.selectCountry} name="select">
+                                    <option value="" disabled>Выберите страну</option>
+                                    {Object.keys(countrySet).map( (element, i) => {
+                                        return <option key={i} value={countrySet[element]} >{countrySet[element]}</option>
                                     } )}
                                 </select>
-                            )}
+                                {this.state.select && (
+                                    <select onChange={this.selectCity} className="select__currency" value={this.state.selectCity} name="select">
+                                        <option value="" disabled>Выберите город</option>
+                                        {Object.keys(this.cityList).map( (element, i) => {
+
+                                            if(this.state.select.indexOf(this.cityList[element].country) !== -1) {
+                                                return <option key={i} value={this.cityList[element].id} >{this.cityList[element].name}</option>
+                                            } else{
+                                                return null
+                                            }
+
+                                        } )}
+                                    </select>
+                                )}
+                            </div>
+
+                            {/* Тут мы данные выводим если пользователь не накосячит (текущие) */}
+                            {(this.state.data.cod === 200)?(<OutData 
+                                                                data={this.state.data} 
+                                                                degreesCelsius={this.state.degreesCelsius} />)
+                                                                :<div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
+                                                                
+
+                            {/* Тут, если все норм, то данные о погоде на 5 дней с шагом в 3 часа*/}
+                            {(this.state.forecastData.cod === '200')?(<FiveDay 
+                                                                forecastData={this.state.forecastData}
+                                                                degreesCelsius={this.state.degreesCelsius} />)
+                                                                :<div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
+
                         </div>
-
-                        {/* Тут мы данные выводим если пользователь не накосячит (текущие) */}
-                        {(this.state.data.cod === 200)?(<OutData 
-                                                            data={this.state.data} 
-                                                            degreesCelsius={this.state.degreesCelsius} />)
-                                                            :<div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
-                                                            
-
-                        {/* Тут, если все норм, то данные о погоде на 5 дней с шагом в 3 часа*/}
-                        {(this.state.forecastData.cod === '200')?(<FiveDay 
-                                                            forecastData={this.state.forecastData}
-                                                            degreesCelsius={this.state.degreesCelsius} />)
-                                                            :<div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
-
                     </div>
                 </div>
             </div>

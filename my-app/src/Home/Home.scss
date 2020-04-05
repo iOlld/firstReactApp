@@ -75,7 +75,7 @@
     min-height: 1500px;
     // min-height: 150vh;
 
-    &__wrap{
+    &__paralax{
         position: relative;
         width: 100%;
         height: 100vh;
@@ -89,14 +89,9 @@
         .picture{
             position: absolute;
             top: 0;
-            // left: 0;
             width: 100%;
             height: 100%;
-            
             background-repeat: no-repeat;
-
-            // object-fit: cover; // Почитать за это свойство
-            // pointer-events: none; // Почитать за это свойство
         }
 
         .bg{
@@ -143,9 +138,7 @@
         }
         
     }
-
-
-
+    
     &__title{
         font-family: 'Trade Winds', cursive;
         position: relative;
@@ -154,9 +147,12 @@
         z-index: 1;
     }
 
+
+
+
     .container{
-        margin: 0 auto;
-        padding: 100px 0px;
+        margin: 100 auto;
+        // padding: 100px 0px;
     }
 
     &__description{
@@ -184,6 +180,9 @@
 // }
 
 // @media screen and (max-width: 736px) {
+
+
+
 @media screen and (max-width: 1024px) {
 
 	.Home{
