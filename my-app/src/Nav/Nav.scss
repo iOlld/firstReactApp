@@ -2,6 +2,11 @@
 
 .Nav{
     width: max-content;
+    position: relative;
+
+    &__burger{
+        display: none;
+    }
 
     ul{
         display: flex;
@@ -25,7 +30,6 @@
                 color: #fff;
                 position: relative;
                 transition: 0.4s;
-                // text-shadow: 1px 0px 0px rgb(0, 255, 242);
                 text-shadow: 1px 2px 2px #292c2c;
 
                 &:hover::before{
@@ -47,11 +51,130 @@
 }
 
 
-
 @media screen and (max-width: 736px) {
 
 	.Nav{
         margin-right: 15px;
-	}
 
+        &__burger-wrap{
+            display: flex;
+            width: max-content;
+            height: max-content;
+        }
+
+        &__burger{
+            display: block;
+            position: absolute;
+            right: 0;
+            top: -20px;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            width: 44px;
+            height: 35px;
+            font-size: 0;
+            box-shadow: none;
+            cursor: pointer;
+            border: none;
+            outline: none;
+
+            span{
+                display: block;
+                position: absolute;
+                top: 16px;
+                left: 0px;
+                right: 0px;
+                height: 4px;
+                background: linear-gradient(to right,rgb(0, 255, 242), #fff);
+                
+                &::before, &::after{
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    width: 100%;
+                    height: 4px;
+                    background: linear-gradient(to right,rgb(0, 255, 242), #fff);
+                    content: "";
+                }
+                &::before{
+                    top: -12px;
+                }
+                &::after{
+                    bottom: -12px;
+                }
+            }
+
+        }
+
+        &__burger-line{
+            background: transparent;
+
+            span{
+                transition: background 0s 0.3s;
+
+                &::before, &::after{
+                    transition-duration: 0.3s, 0.3s;
+                    transition-delay: 0.3s, 0s;
+                }
+
+                &::before{
+                    transition-property: top, transform;
+                }
+
+                &::after{
+                    transition-property: bottom, transform;
+                }
+            }
+
+        }
+
+        
+        .is__active{
+
+            span{
+                background: none;
+
+                &::before{
+                    top: 0;
+                    transform: rotate(-45deg);
+                }
+
+                &::after{
+                    bottom: 0;
+                    transform: rotate(45deg);
+                }
+
+                &::before, &::after{
+                    transition-delay: 0s, 0.3s;
+                }
+            }
+        }
+
+        ul{
+            display: flex;
+            position: absolute;
+            right: -300px;
+            top: 25.5px;
+            z-index: 101;
+            width: 280px;
+            background-color: rgba(1, 0, 0, 0.9);
+            flex-direction: column;
+            align-items: flex-start;
+            transition: 1s all ease;
+            
+
+            li{
+                margin: 5px;
+                padding: 10px 30px;
+
+                &:first-child{
+                    margin-left: 5px;
+                }
+                &:last-child{
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+    
 }

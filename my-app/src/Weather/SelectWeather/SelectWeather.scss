@@ -1,7 +1,8 @@
 .SelectWeather{
     display: flex;
     flex-direction: column;
-    z-index: 101;
+    // z-index: 101;
+    z-index: 100;
 
     select{
         width: 290px;

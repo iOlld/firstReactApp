@@ -43,6 +43,10 @@ class ParalaxWeather extends React.Component {
         let p = s/h * 100;
         let p_b = s/h_b * 100;
 
+        
+        if(p <= 0) p = 0;
+        if(p_b <= 0) p_b = 0;
+
         let o = 1 - 1/500 * p_b;
 
         let z_1 = 1 + (w / 100000 * p_b)
@@ -60,7 +64,6 @@ class ParalaxWeather extends React.Component {
         let z_2 = 1 + (w_2 / 1500000 * p);
         this.mountain_1.current.style.transform = `scale(${z_2})`;
 
-        if(p_b <= 0) p_b = 0;
 
         let hr = w / 2000 * p_b;
         let z_3 = 1 + (w * 0.000005 * p_b);

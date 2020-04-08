@@ -4,17 +4,17 @@ import CurrencyCalc from './CurrencyCalc/CurrencyCalc';
 
 class Currency extends React.Component {
     constructor (props) {
-      super(props);
-      this.state = {
-        dataBase: '',
-        dataAll: '',
-        allCurrencyCod: '',
-        result: '',
-      }
+        super(props);
+        this.state = {
+            dataBase: '',
+            dataAll: '',
+            allCurrencyCod: '',
+            result: '',
+        }
 
-      this.baseCyrrency = ['EUR', 'USD', 'RUR'];
+        this.baseCyrrency = ['EUR', 'USD', 'RUR'];
 
-      this.currency();
+        this.currency();
     }
     // 3 основные валюты которые дает банк и они влепили туда биткоин
     currency = () => {

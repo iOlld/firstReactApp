@@ -3,10 +3,10 @@ import './OutData.scss';
 
 class OutData extends React.Component {
     constructor (props) {
-      super(props);
-      this.state = {
-          
-      }
+        super(props);
+        this.state = {
+
+        }
 
     }
 
@@ -116,8 +116,8 @@ class OutData extends React.Component {
                     <div className="description-item">
                         <p>Давление {this.state.data.main.pressure} мм.р.с </p>
                         {this.state.data.wind.speed !== 0 && <p> {this.windSpeed()} {this.state.data.wind.speed} м/с </p>}
-                        <p>Направление {this.state.data.wind.deg}&deg;</p>
-                        <p>{this.windDeg()} </p>
+                        {this.state.data.wind.deg && <p>Направление {this.state.data.wind.deg}&deg;</p>}
+                        {this.state.data.wind.deg && <p>{this.windDeg()} </p>}
                     </div>
                 </div>
 
