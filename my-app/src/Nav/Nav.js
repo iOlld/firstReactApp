@@ -20,6 +20,7 @@ class Nav extends React.Component {
             this.setState({buttonActive: ''});
             this.ulNav.current.style.right = '-300px';
         }
+        
     }
 
     closeMenu = () => {
@@ -37,7 +38,7 @@ class Nav extends React.Component {
                 </ul>
                 <div className="Nav__burger-wrap" onClick={this.showMenu} >
                     <button className={[`Nav__burger Nav__burger-line ${this.state.buttonActive}`]}>
-                        <span>Menu</span>
+                        <span className="Nav__span">Menu</span>
                     </button>
                 </div>
             </nav>
