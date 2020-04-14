@@ -67,21 +67,25 @@ class CurrencyCalc extends React.Component {
                 </div>
 
                 {this.state.selectChecked && <div className="CurrencyCalc__item">
-                    <p>Купить&nbsp;&nbsp;{this.state.selectChecked[0].ccy}</p>
+                    <div>
+                        <p>Купить&nbsp;&nbsp;{this.state.selectChecked[0].ccy}</p>
+                        <p>{this.state.sale}&nbsp;&nbsp;{this.state.selectChecked[0].base_ccy}</p>
+                    </div>
                     <input type="number" 
                             value={this.state.inputBuyVal}
                             onChange={this.buyFunc}
                             placeholder={[`0 ${this.state.selectChecked[0].ccy}`]} />
-                    <p>{this.state.sale}&nbsp;&nbsp;{this.state.selectChecked[0].base_ccy}</p>
                 </div>}
 
                 {this.state.selectChecked && <div className="CurrencyCalc__item">
-                    <p>Продать&nbsp;&nbsp;{this.state.selectChecked[0].ccy}</p>
+                    <div>
+                        <p>Продать&nbsp;&nbsp;{this.state.selectChecked[0].ccy}</p>
+                        <p>{this.state.buy}&nbsp;&nbsp;{this.state.selectChecked[0].base_ccy}</p>
+                    </div>
                     <input type="number"
                             value={this.state.inputSaleVal}
                             onChange={this.saleFunc}
                             placeholder={[`0 ${this.state.selectChecked[0].ccy}`]} />
-                    <p>{this.state.buy}&nbsp;&nbsp;{this.state.selectChecked[0].base_ccy}</p>
                 </div>}
             </div>
         )

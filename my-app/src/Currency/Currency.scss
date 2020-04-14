@@ -26,8 +26,10 @@
     &__wrap{
         position: relative;
         display: flex;
+        min-height: 73vh;
         flex-direction: column;
         align-items: center;
+        justify-content: space-evenly;
         background: rgba(255, 255, 255, 0.4);
         padding: 15px;
         border-radius: 15px;
@@ -58,7 +60,7 @@
             line-height: 1.2;
             letter-spacing: 3px;
             // text-align: center;
-            transform: rotate(-15deg) skew(15deg);
+            // transform: rotate(-15deg) skew(15deg);
 
             &::before{
                 content: attr(data-text);
@@ -80,7 +82,7 @@
             line-height: 1.2;
             letter-spacing: 3px;
             // text-align: center;
-            transform: rotate(-15deg) skew(15deg);
+            // transform: rotate(-15deg) skew(15deg);
 
             &::before{
                 content: attr(data-text);
@@ -112,10 +114,11 @@
     .select__currency{
         width: 290px;
         height: 42px;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 3px;
-        border-top-right-radius: 20px;
-        border-top-left-radius: 3px;
+        border-radius: 10px;
+        // border-bottom-left-radius: 20px;
+        // border-bottom-right-radius: 3px;
+        // border-top-right-radius: 20px;
+        // border-top-left-radius: 3px;
         margin-top: 30px;
         margin-bottom: 30px;
         text-align-last: center;

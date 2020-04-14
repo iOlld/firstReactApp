@@ -4,7 +4,7 @@ import './Home.scss';
 class Home extends React.Component {
     constructor (props) {
         super(props);
-        this.itemRef = React.createRef();
+        // this.itemRef = React.createRef();
         this.bg = React.createRef();
         this.moon = React.createRef();
         this.mountain = React.createRef();
@@ -51,8 +51,12 @@ class Home extends React.Component {
                 </div>
                 
                 <div className="container">
-                        <div className="Home__description" ref={this.itemRef} >
+                        {/* <div className="Home__description" ref={this.itemRef} > */}
+                        <div className="Home__description">
                             <p>Согласен, так себе дизайнер, но стараюсь как могу</p>
+                        </div>
+                        <div className="Home__description">
+                            <p>Еще нужно сделать много поправок, так сказать <br/> "Бета версия"</p>
                         </div>
                         <div className="Home__description">
                             <p>Описаниие для погоды</p>

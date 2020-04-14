@@ -1,7 +1,10 @@
 import React from 'react';
+// import ReactDOM from 'react-dom';
 import './Currency.scss';
 import CurrencyCalc from './CurrencyCalc/CurrencyCalc';
 import IsLoading from '../IsLoading/IsLoading';
+
+// ReactDOM.findDOMNode();
 
 class Currency extends React.Component {
     constructor (props) {
@@ -13,12 +16,12 @@ class Currency extends React.Component {
             result: '',
         }
 
-
         this.baseCyrrency = ['EUR', 'USD', 'RUR'];
 
         this.currency();
 
-        this.text3DSt = React.createRef();
+        this.textRef = [];
+        
     }
     
 
@@ -63,47 +66,45 @@ class Currency extends React.Component {
         let res = Array.from((new Set(cod)));
 
         this.setState({allCurrencyCod: res});
+        
+        this.getText() // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
 
-    
-    textFunk = () => {
-        let text3DBig = document.querySelectorAll('.text-3d-big');
-        let text3DSmall = document.querySelectorAll('.text-3d-small');
-        let shadowBig = '';
-        let shadowSmall = '';
-        for (let i = 0; i < 10; i++) {
-            shadowBig +=(shadowBig?',':'') + -i * 1 + 'px ' + i * 1 + 'px 0 #d9d9d9'
-        }
-        for (let i = 0; i < 5; i++) {
-            shadowSmall +=(shadowSmall?',':'') + -i * 1 + 'px ' + i * 1 + 'px 0 #d9d9d9'
-        }
-
-
-        for (let i = 0; i < text3DBig.length; i++) {
-            text3DBig[i].style.textShadow = shadowBig
-        }
-
-        for (let i = 0; i < text3DSmall.length; i++) {
-            text3DSmall[i].style.textShadow = shadowSmall
-        }
+    getText = () => {
         
+        for (let i = 0; i < this.textRef.length; i++) {
+
+            let shadowBig = '';
+
+            if ( this.textRef[i].style !== undefined ) {
+
+                let maxStep = Math.round(this.textRef[i].offsetHeight / 7);
+                
+                for (let i = 0; i < maxStep; i++) {
+                    shadowBig +=`${(shadowBig?',':'')}${-i * 1}px ${i * 1}px 0 #d9d9d9`;
+                    
+                }
+                
+                this.textRef[i].style.textShadow = shadowBig
+
+            }
+        }
+
     }
 
     
     render() {
-
-        this.textFunk()
 
         return (
             <div className="Currency">
                 <div className="Currency__bg"></div>
                 <div className="container">
                     <div className="Currency__wrap">
-                        <p>
+                        <p ref={this.bankTextRef}>
                             Курс от "приват банка"
                         </p>
 
-                        <p className="base__currency" >Основные валюты</p>
+                        <p className="base__currency" ref={this.titleTextRef}>Основные валюты</p>
 
                         {!this.state.dataBase && <IsLoading />}
 
@@ -111,24 +112,13 @@ class Currency extends React.Component {
                             {Object.keys(this.state.result).map( (keyName, i) => {
                                 return (
                                     
-                                        
-                                    <div className="Currency__item" key={i} >
-                                        <p ref={this.text3DSt} className="Currency__item-name text-3d-big" data-text={this.state.result[keyName].ccy}>
-                                            {this.state.result[keyName].ccy}
-                                        </p>
-                                        <div>
-                                            <p className="Currency__item-price text-3d-small" data-text={parseFloat(this.state.result[keyName].buy)}>
-                                                {parseFloat(this.state.result[keyName].buy)}
-                                            </p>
-                                            <p className="Currency__item-price text-3d-small" data-text={parseFloat(this.state.result[keyName].sale)}>
-                                                {parseFloat(this.state.result[keyName].sale)}
-                                            </p>
-                                        </div>
-                                        {/* <p> 
+                                    <div className="Currency__item" key={i}>
+                                        <p ref={ (ref) => {this.textRef[i] = ref; return true} }> 
+                                        {/* <p ref={ (ref) => {this.textRef[i] = ref; return true} } onLoad={this.getText(this.textRef)}>  */}
                                             {parseFloat(this.state.result[keyName].buy)}&nbsp;&nbsp;
                                             {this.state.result[keyName].ccy}&nbsp;&nbsp;
                                             {parseFloat(this.state.result[keyName].sale)}
-                                        </p> */}
+                                        </p>
                                     </div>
                                 )
                             } )}
