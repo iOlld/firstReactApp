@@ -75,7 +75,6 @@ class OutData extends React.Component {
             {name: 'Северо-северо-запад', valueMin: 327.2, valueMax: 349.7},
             {name: 'Север', valueMin: 349.8, valueMax: 360},
         ];
-
         
         let wind = windDegArr.filter( element => this.state.data.wind.deg >= element.valueMin && this.state.data.wind.deg <= element.valueMax )
         
